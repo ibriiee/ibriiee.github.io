@@ -121,8 +121,8 @@
   .marquee-track{display:flex;gap:52px;white-space:nowrap;width:max-content;animation:scrollx 36s linear infinite}
   .marquee-track.rev{animation:scrollx 44s linear infinite reverse;margin-top:16px}
   .marquee:hover .marquee-track{animation-play-state:paused}
-  .marquee-track span{font-family:var(--serif);font-size:21px;color:var(--muted);letter-spacing:.02em}
-  .marquee-track span b{color:var(--gold);font-weight:600}
+  .marquee-track span{font-family:var(--serif);font-size:21px;color:var(--muted);letter-spacing:.02em;transition:color .2s}
+  .marquee .marquee-track span:hover{color:var(--gold)}
   .marquee-track.rev span{font-family:var(--sans);font-size:13px;color:var(--muted-2);letter-spacing:.14em;text-transform:uppercase}
   @keyframes scrollx{to{transform:translateX(-50%)}}
 
@@ -320,7 +320,7 @@
 <!-- ============ MARQUEES ============ -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track" id="mq1">
-    <span>GITEX <b>Global</b></span><span>COP28</span><span>Dubai <b>World Cup</b></span><span>Gulfood</span><span>Al Ain <b>Flower Festival</b></span><span>MIT <b>DesignX</b></span><span>GISEC Global</span><span>DIEZ Annual Gala</span><span>Sneaker Con Doha</span><span>Dubai Ride</span>
+    <span>GITEX Global</span><span>COP28</span><span>Dubai World Cup</span><span>Gulfood</span><span>Al Ain Flower Festival</span><span>MIT DesignX</span><span>GISEC Global</span><span>DIEZ Annual Gala</span><span>Sneaker Con Doha</span><span>Dubai Ride</span>
   </div>
   <div class="marquee-track rev" id="mq2">
     <span>Dubai World Trade Centre</span><span>DIEZ</span><span>DAFZA</span><span>Commercial Bank of Dubai</span><span>Dubai Municipality</span><span>Dubai Economy &amp; Tourism</span><span>Dubai Police</span><span>RTA</span><span>ENOC</span><span>ADNOC</span><span>DIFC</span><span>Emarat</span><span>Philip Morris Int'l</span><span>Etisalat</span><span>Expo City Dubai</span><span>Alsayegh Worldwide</span>
