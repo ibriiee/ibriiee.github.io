@@ -1,6 +1,6 @@
-# ibriiee.github.io — Ibrahim Naeem
+# ibriiee.github.io — Ibrahim Muhammad Naeem
 
-`PERSONAL SITE · REV 02 · 2026-08-02`
+`PERSONAL SITE · REV 04 · 2026-08-02`
 
 Two pages, one free GitHub Pages site, no build step and no dependencies. System fonts only
 (Palatino serif, Segoe UI sans, Consolas mono). Both pages work opened straight from disk.
@@ -39,8 +39,12 @@ GitHub Pages rebuilds in about a minute. Settings are already correct: repo
 
 ## Updating
 
-Edit the file, bump the `REV` stamp in the hero top-right and the footer, commit, push. Social
+Edit the file, bump the `REV` stamp in the hero header row and the footer, commit, push. Social
 cards regenerate from `scripts/make_og.py` if the headline ever changes.
+
+The hero stamp is a flow element, not absolutely positioned. It used to be `position:absolute`
+top-right, where the accreditation badge painted straight over it and hid all but the tail of each
+line. Keep it in flow.
 
 ## What is on index.html
 
@@ -51,8 +55,18 @@ Brain + Abdullah, data science, content engine) → **The Floor** (filterable 18
 
 Interactions: scroll progress bar, scroll-spy nav, animated counters, reveal on scroll, filterable
 timeline, 3D tilt cards, magnetic buttons, live Asia/Dubai clock, copy-email-to-clipboard, dark and
-light themes persisted in `localStorage`, and a real mobile menu. All guarded by
-`prefers-reduced-motion` and `pointer: fine`.
+light themes persisted in `localStorage`, and a real mobile menu.
+
+Motion layer (Rev 03), all in the grammar of event production rather than generic web effects:
+followspot that lights the hero under the cursor, drifting haze motes on canvas, a looping roster
+board of rooms and clients, tally lights pulsing on the LIVE tags, section kickers ruling their own
+underline in, timeline nodes pinging as they enter, a level meter beside the clock, and 140 country
+delegations drawn as a turning globe of points.
+
+All guarded by `prefers-reduced-motion` and `pointer: fine`. Both canvases size from a
+`ResizeObserver`, not the window `resize` event, because they can be laid out at zero width on first
+paint and would otherwise keep a 0x0 buffer forever; both pause via `IntersectionObserver` when off
+screen.
 
 ## House rules
 

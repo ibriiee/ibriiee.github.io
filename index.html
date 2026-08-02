@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ibrahim Naeem · Operator. Builder. Founder.</title>
+<title>Ibrahim Muhammad Naeem · Operator. Builder. Founder.</title>
 <meta name="description" content="Twelve years of UAE event production: GITEX, COP28, Dubai World Cup, Gulfood. Three live products, one exited company, and an AI operating system with 753 tests green.">
 <link rel="canonical" href="https://ibriiee.github.io/">
 <meta name="author" content="Ibrahim Muhammad Naeem">
 <meta name="theme-color" content="#0a0a0b">
-<meta property="og:title" content="Ibrahim Naeem · Operator. Builder. Founder.">
+<meta property="og:title" content="Ibrahim Muhammad Naeem · Operator. Builder. Founder.">
 <meta property="og:description" content="I run the floor at world-scale events. Then I build the machine that could run it.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ibriiee.github.io/">
@@ -17,7 +17,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ibrahim Naeem · Operator. Builder. Founder.">
+<meta name="twitter:title" content="Ibrahim Muhammad Naeem · Operator. Builder. Founder.">
 <meta name="twitter:description" content="I run the floor at world-scale events. Then I build the machine that could run it.">
 <meta name="twitter:image" content="https://ibriiee.github.io/assets/og-image.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0b'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23d4af37' text-anchor='middle'%3EI%3C/text%3E%3C/svg%3E">
@@ -109,10 +109,16 @@ h1 em{font-style:normal;color:var(--goldtx)}
 .btn:hover{border-color:var(--gold);color:var(--goldtx)}
 .btn.gold{border-color:var(--gold);color:var(--goldtx)}
 .btn.gold:hover{background:var(--gold);color:var(--ongold)}
-.stamp{position:absolute;top:78px;right:clamp(20px,5vw,32px);font-size:9.5px;color:var(--muted);
- text-align:right;line-height:2;font-family:Consolas,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase}
+/* Revision stamp. In flow, not absolute: the badge occupies the top right of the hero and was
+   painting straight over it, hiding everything but the tail of each line. */
+.stamp{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;
+ column-gap:clamp(14px,2.4vw,26px);row-gap:2px;
+ font-size:9.5px;color:var(--muted);line-height:1.9;
+ font-family:Consolas,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;
+ padding-bottom:13px;margin-bottom:clamp(26px,4vw,42px);border-bottom:1px solid var(--line)}
 .stamp b{color:var(--goldtx);font-weight:400;font-variant-numeric:tabular-nums}
-@media(max-width:940px){.stamp{position:static;text-align:left;margin-bottom:22px}}
+.stamp .now{display:inline-flex;align-items:center}
+@media(max-width:760px){.stamp{justify-content:flex-start}}
 
 /* badge */
 .badge-wrap{perspective:1100px;display:flex;justify-content:center}
@@ -323,7 +329,7 @@ header.hero>.wrap{position:relative;z-index:2}
 
 <nav>
   <div class="wrap">
-    <a class="mark serif" href="#top">Ibrahim <span>Naeem</span></a>
+    <a class="mark serif" href="#top">Ibrahim Muhammad <span>Naeem</span></a>
     <ul class="navlinks mono" id="navlinks">
       <li><a href="#ventures">Ventures</a></li>
       <li><a href="#systems">Systems</a></li>
@@ -345,7 +351,11 @@ header.hero>.wrap{position:relative;z-index:2}
   <canvas id="haze" aria-hidden="true"></canvas>
   <div id="spot" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="stamp">REV 03 · 2026-08-02<br>Dubai · United Arab Emirates<br><b id="clock">DXB --:--:--</b><span class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
+    <div class="stamp">
+      <span>Rev 04 · 2026-08-02</span>
+      <span>Dubai · United Arab Emirates</span>
+      <span class="now"><b id="clock">DXB --:--:--</b><span class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></span>
+    </div>
     <div class="hero-grid">
       <div>
         <p class="kick mono">Production &amp; Operations · AI Systems · Founder</p>
@@ -613,9 +623,9 @@ header.hero>.wrap{position:relative;z-index:2}
 
 <footer>
   <div class="wrap">
-    <p class="fine">Ibrahim Naeem · Personal site · Rev 03 · 2026-08-02<br>
+    <p class="fine">Ibrahim Muhammad Naeem · Personal site · Rev 04 · 2026-08-02<br>
     Every figure on this page is record-verified · No stock, no filler</p>
-    <p class="mark serif">Ibrahim <span>Naeem</span></p>
+    <p class="mark serif">Ibrahim Muhammad <span>Naeem</span></p>
   </div>
 </footer>
 
