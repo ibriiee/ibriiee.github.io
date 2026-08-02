@@ -239,11 +239,81 @@ footer .mark{font-size:19px}
 /* reveal */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
+
+/* ---- motion layer. The grammar is event production: followspots, haze in the beam,
+       tally lights, a ruled run sheet, a roster board. Gold only, nothing decorative. ---- */
+
+/* followspot + haze sit behind the hero content */
+header.hero>.wrap{position:relative;z-index:2}
+#haze,#spot{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#haze{z-index:0}
+#spot{z-index:1;opacity:0;transition:opacity .45s ease}
+
+/* tally light on anything live, like a camera cue lamp */
+.tag.live{position:relative;padding-left:19px}
+.tag.live::before{content:"";position:absolute;left:8px;top:50%;width:5px;height:5px;margin-top:-2.5px;
+ border-radius:50%;background:var(--gold);animation:tally 2.4s ease-in-out infinite}
+@keyframes tally{
+  0%,100%{opacity:.28;box-shadow:0 0 0 0 rgba(212,175,55,0)}
+  50%{opacity:1;box-shadow:0 0 9px 2px rgba(212,175,55,.45)}
+}
+
+/* section kicker rules itself in, like drawing a line on a run sheet */
+.sec-kick{position:relative;padding-bottom:13px}
+.sec-kick::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+ background:var(--gold);transition:width 1s cubic-bezier(.2,.7,.2,1) .15s}
+.sec-kick.in::after{width:62px}
+
+/* timeline node pings once as it enters */
+.tl li.in::before{animation:ping .9s ease-out}
+@keyframes ping{
+  from{box-shadow:0 0 0 0 rgba(212,175,55,.55)}
+  to{box-shadow:0 0 0 11px rgba(212,175,55,0)}
+}
+
+/* roster board: the rooms, on a loop */
+.roster{border-bottom:1px solid var(--line);overflow:hidden;position:relative;
+ padding:15px 0;background:var(--panel)}
+.roster::before,.roster::after{content:"";position:absolute;top:0;bottom:0;width:clamp(40px,9vw,110px);
+ z-index:2;pointer-events:none}
+.roster::before{left:0;background:linear-gradient(90deg,var(--panel),transparent)}
+.roster::after{right:0;background:linear-gradient(270deg,var(--panel),transparent)}
+.roster-track{display:flex;width:max-content;animation:scrollx 52s linear infinite}
+.roster-track b{font-family:Consolas,Menlo,monospace;font-size:10.5px;letter-spacing:.16em;
+ text-transform:uppercase;font-weight:400;color:var(--muted);padding:0 22px;white-space:nowrap;
+ transition:color .25s}
+.roster-track b::after{content:"·";margin-left:22px;color:var(--line2)}
+.roster-track b:hover{color:var(--goldtx)}
+.roster:hover .roster-track{animation-play-state:paused}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* level meter, sits with the production clock */
+.meter{display:inline-flex;align-items:flex-end;gap:2px;height:9px;margin-left:7px;vertical-align:-1px}
+.meter i{width:2px;height:100%;background:var(--gold);opacity:.55;transform-origin:bottom;
+ animation:wv 1.1s ease-in-out infinite}
+.meter i:nth-child(2){animation-delay:.13s}.meter i:nth-child(3){animation-delay:.27s}
+.meter i:nth-child(4){animation-delay:.09s}.meter i:nth-child(5){animation-delay:.34s}
+@keyframes wv{0%,100%{transform:scaleY(.32)}50%{transform:scaleY(1)}}
+
+/* the 140+ countries, as a turning globe of points */
+.globe-wrap{margin-top:clamp(36px,5vw,48px);display:flex;align-items:center;gap:clamp(20px,4vw,44px);
+ flex-wrap:wrap;border-top:1px solid var(--line);padding-top:clamp(28px,4vw,38px)}
+#globe{width:min(210px,54vw);height:min(210px,54vw);flex:none}
+.globe-cap{flex:1;min-width:220px}
+.globe-cap .n{font-family:Palatino,Georgia,serif;font-size:clamp(30px,4.2vw,46px);color:var(--goldtx);
+ line-height:1;font-variant-numeric:tabular-nums}
+.globe-cap p{color:var(--muted);font-size:14px;margin-top:12px;max-width:44ch}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
   .badge,.card,.btn{transition:none!important;transform:none!important}
   #prog{transition:none}
+  .tag.live::before,.meter i,.roster-track{animation:none}
+  .tag.live::before{opacity:1}
+  .sec-kick::after{transition:none;width:62px}
+  .tl li.in::before{animation:none}
+  #haze,#spot{display:none}
 }
 </style>
 </head>
@@ -272,8 +342,10 @@ footer .mark{font-size:19px}
 
 <main id="main">
 <header class="hero" id="top">
+  <canvas id="haze" aria-hidden="true"></canvas>
+  <div id="spot" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="stamp">REV 02 · 2026-08-02<br>Dubai · United Arab Emirates<br><b id="clock">DXB --:--:--</b></div>
+    <div class="stamp">REV 03 · 2026-08-02<br>Dubai · United Arab Emirates<br><b id="clock">DXB --:--:--</b><span class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
     <div class="hero-grid">
       <div>
         <p class="kick mono">Production &amp; Operations · AI Systems · Founder</p>
@@ -318,6 +390,10 @@ footer .mark{font-size:19px}
     <div class="stat rv"><p class="n" data-count="60" data-suffix="">0</p><p class="l">Chauffeurs led · Dubai World Cup 2025</p></div>
     <div class="stat rv"><p class="n" data-count="753" data-suffix="">0</p><p class="l">Tests green · Auto Pilot Events OS</p></div>
   </div>
+</div>
+
+<div class="roster" aria-label="Selected events, clients and venues">
+  <div class="roster-track" id="roster"></div>
 </div>
 
 <section id="ventures">
@@ -503,6 +579,16 @@ footer .mark{font-size:19px}
       <tr class="rv"><th scope="row">Elsewhere</th><td><a href="https://linkedin.com/in/ibrahimn" target="_blank" rel="noopener">linkedin.com/in/ibrahimn</a> · <a href="https://github.com/ibriiee" target="_blank" rel="noopener">github.com/ibriiee</a> · <a href="https://kaggle.com/ibriiee" target="_blank" rel="noopener">kaggle.com/ibriiee</a> · <a href="profile.html">full interactive profile</a></td></tr>
       </tbody>
     </table>
+    <div class="globe-wrap rv">
+      <canvas id="globe" aria-hidden="true"></canvas>
+      <div class="globe-cap">
+        <p class="n"><span data-count="140" data-suffix="+">0</span></p>
+        <p class="mono" style="font-size:10px;letter-spacing:.16em;color:var(--muted);margin-top:9px">Country delegations hosted</p>
+        <p>Three editions of GITEX Global, plus GITEX Africa, GITEX Europe and Gulfood Manufacturing,
+        run out of Dubai World Trade Centre. Complete visit programs under full diplomatic protocol,
+        and the B2B matchmaking that made the meetings worth taking.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -527,7 +613,7 @@ footer .mark{font-size:19px}
 
 <footer>
   <div class="wrap">
-    <p class="fine">Ibrahim Naeem · Personal site · Rev 02 · 2026-08-02<br>
+    <p class="fine">Ibrahim Naeem · Personal site · Rev 03 · 2026-08-02<br>
     Every figure on this page is record-verified · No stock, no filler</p>
     <p class="mark serif">Ibrahim <span>Naeem</span></p>
   </div>
@@ -600,6 +686,16 @@ var io = new IntersectionObserver(function(entries){
   });
 }, {threshold:.12, rootMargin:"0px 0px -40px 0px"});
 document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+
+/* section kickers rule their own underline in */
+var kio = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (!e.isIntersecting) return;
+    e.target.classList.add("in");
+    kio.unobserve(e.target);
+  });
+}, {threshold:.6});
+document.querySelectorAll(".sec-kick").forEach(function(el){ kio.observe(el); });
 
 /* counters */
 function runCount(el){
@@ -686,7 +782,126 @@ if (fine && !reduce){
     });
     b.addEventListener("pointerleave", function(){ b.style.transform = ""; });
   });
+
+  /* followspot: the hero lights up where the cursor is */
+  var hero = document.querySelector("header.hero"), spot = document.getElementById("spot");
+  hero.addEventListener("pointermove", function(ev){
+    var r = hero.getBoundingClientRect();
+    spot.style.opacity = "1";
+    spot.style.background = "radial-gradient(460px circle at " + (ev.clientX - r.left) + "px "
+      + (ev.clientY - r.top) + "px, rgba(212,175,55,.085), transparent 68%)";
+  });
+  hero.addEventListener("pointerleave", function(){ spot.style.opacity = "0"; });
 }
+
+/* roster board. Built from one list, printed twice so the loop is seamless. */
+(function(){
+  var rooms = ["GITEX Global","COP28","Dubai World Cup","Gulfood","Sneaker Con Doha",
+    "Al Ain Flower Festival","MIT DesignX","DSO DDX","DIEZ Annual Gala","Commercial Bank of Dubai",
+    "GISEC Global","Dubai Air Show","Expo City Dubai","Dubai World Trade Centre","GITEX Africa",
+    "GITEX Europe","Afterlife Abu Dhabi","Dubai Ride","RAK Half Marathon","DAFZA",
+    "Dubai CommerCity","Dubai Silicon Oasis","Etisalat","GITEX Shopper"];
+  var track = document.getElementById("roster");
+  if (!track) return;
+  var html = rooms.map(function(r){ return "<b>" + r + "</b>"; }).join("");
+  track.innerHTML = html + html;      /* second pass is what -50% scrolls into */
+})();
+
+/* ambient haze: dust in a light beam, not a particle field */
+(function(){
+  var c = document.getElementById("haze");
+  if (!c || reduce) return;
+  var x = c.getContext("2d"), w, h, motes = [], raf;
+  function size(){
+    var r = c.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    w = r.width; h = r.height;
+    c.width = w * dpr; c.height = h * dpr;
+    x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    motes = [];
+    var n = Math.min(Math.round(w * h / 16000), 70);
+    for (var i = 0; i < n; i++){
+      motes.push({x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.3+.4,
+                  vx:(Math.random()-.5)*.13, vy:-(Math.random()*.16+.04), a:Math.random()*.35+.08});
+    }
+  }
+  function loop(){
+    x.clearRect(0, 0, w, h);
+    for (var i = 0; i < motes.length; i++){
+      var m = motes[i];
+      m.x += m.vx; m.y += m.vy;
+      if (m.y < -4){ m.y = h + 4; m.x = Math.random() * w; }
+      if (m.x < -4) m.x = w + 4; else if (m.x > w + 4) m.x = -4;
+      x.beginPath();
+      x.arc(m.x, m.y, m.r, 0, 6.2832);
+      x.fillStyle = "rgba(212,175,55," + m.a + ")";
+      x.fill();
+    }
+    raf = requestAnimationFrame(loop);
+  }
+  size(); loop();
+  /* ResizeObserver, not the window resize event: the canvas can be laid out at zero width on
+     first paint (fonts still loading, section off screen) and would stay a 0x0 buffer forever. */
+  if (window.ResizeObserver) new ResizeObserver(size).observe(c);
+  else addEventListener("resize", size, {passive:true});
+  /* stop drawing when the hero is off screen */
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting && !raf) raf = requestAnimationFrame(loop);
+      else if (!e.isIntersecting && raf){ cancelAnimationFrame(raf); raf = 0; }
+    });
+  }, {threshold:0}).observe(c);
+})();
+
+/* 140+ countries as a turning globe of points */
+(function(){
+  var c = document.getElementById("globe");
+  if (!c || reduce) return;
+  var x = c.getContext("2d"), w, h, R, cx, cy, pts = [], rot = 0, raf = 0, on = false;
+  function size(){
+    var r = c.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    w = r.width; h = r.height;
+    c.width = w * dpr; c.height = h * dpr;
+    x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    R = Math.min(w, h) * .43; cx = w / 2; cy = h / 2;
+  }
+  /* 140 points spread evenly over a sphere, one per delegation */
+  for (var i = 0; i < 140; i++){
+    var phi = Math.acos(1 - 2 * (i + .5) / 140);
+    var theta = Math.PI * (1 + Math.sqrt(5)) * i;
+    pts.push({x:Math.sin(phi)*Math.cos(theta), y:Math.sin(phi)*Math.sin(theta), z:Math.cos(phi)});
+  }
+  function loop(){
+    x.clearRect(0, 0, w, h);
+    rot += .0034;
+    var s = Math.sin(rot), co = Math.cos(rot);
+    for (var i = 0; i < pts.length; i++){
+      var p = pts[i];
+      var rx = p.x * co - p.z * s, rz = p.x * s + p.z * co;
+      var d = (rz + 1.6) / 2.6;                    /* depth 0..1, front is brighter */
+      x.beginPath();
+      x.arc(cx + rx * R, cy + p.y * R, Math.max(.5, d * 1.9), 0, 6.2832);
+      x.fillStyle = "rgba(212,175,55," + (.12 + d * .62) + ")";
+      x.fill();
+    }
+    /* the rim, so it reads as a sphere and not a cloud */
+    x.beginPath();
+    x.arc(cx, cy, R, 0, 6.2832);
+    x.strokeStyle = "rgba(212,175,55,.16)";
+    x.lineWidth = 1;
+    x.stroke();
+    raf = requestAnimationFrame(loop);
+  }
+  size();
+  if (window.ResizeObserver) new ResizeObserver(size).observe(c);
+  else addEventListener("resize", size, {passive:true});
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      on = e.isIntersecting;
+      if (on && !raf) raf = requestAnimationFrame(loop);
+      else if (!on && raf){ cancelAnimationFrame(raf); raf = 0; }
+    });
+  }, {threshold:0}).observe(c);
+})();
 })();
 </script>
 </body>
