@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Auto Pilot Events OS · Ibrahim Naeem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --jet:#0c0c0d; --surface:#141416; --surface2:#1a1a1d;
+    --line:#26262a; --line2:#333;
+    --white:#f4f4f2; --sec:#b9b9b4; --dim:#8f8f8a; --faint:#6b6b66;
+    --gold:#d9b45b; --gold-dim:#9a7b2d;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--jet); color:var(--white);
+    font-family:'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-weight:300; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .serif{ font-family:'Newsreader', Georgia, 'Times New Roman', serif; }
+
+  .wrap{ max-width:860px; margin:0 auto; padding:0 clamp(20px,5vw,48px); }
+
+  .eyebrow{ font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--faint); font-weight:500; }
+  .gold{ background:linear-gradient(100deg,#9a7b2d 0%,#d9b45b 35%,#f3e2a3 50%,#d9b45b 65%,#9a7b2d 100%);
+    background-size:200% 100%; -webkit-background-clip:text; background-clip:text;
+    color:transparent; -webkit-text-fill-color:transparent; animation:shine 6s linear infinite; font-weight:500; }
+  @keyframes shine{ 0%{ background-position:200% 0 } 100%{ background-position:-200% 0 } }
+
+  /* ---- hero ---- */
+  header{ padding:clamp(64px,12vh,120px) 0 clamp(40px,7vh,72px); border-bottom:1px solid var(--line); }
+  header h1{ font-size:clamp(34px,5.4vw,58px); font-weight:500; letter-spacing:-.025em; line-height:1.08; margin:18px 0 22px; }
+  header .lede{ font-size:clamp(16px,1.9vw,20px); color:var(--sec); max-width:58ch; line-height:1.6; }
+  header .lede em{ color:var(--white); font-style:normal; }
+  .byline{ margin-top:26px; font-size:13px; color:var(--dim); letter-spacing:.04em; }
+  .byline b{ color:var(--white); font-weight:500; }
+
+  /* ---- stat band ---- */
+  .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin:clamp(36px,6vh,56px) 0; }
+  .stat{ background:var(--surface); padding:20px 18px; }
+  .stat .n{ font-size:clamp(22px,3vw,30px); font-weight:500; letter-spacing:-.02em; }
+  .stat .l{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-top:6px; }
+
+  /* ---- sections ---- */
+  section{ padding:clamp(44px,8vh,80px) 0; border-bottom:1px solid var(--line); }
+  .num{ font-size:12px; letter-spacing:.24em; color:var(--gold); font-weight:500; }
+  h2{ font-size:clamp(24px,3.4vw,34px); font-weight:500; letter-spacing:-.02em; margin:12px 0 24px; line-height:1.2; }
+  section p{ color:var(--sec); font-size:clamp(14.5px,1.5vw,16.5px); max-width:66ch; margin-bottom:18px; }
+  section p b, section li b{ color:var(--white); font-weight:500; }
+  section p .au{ color:var(--gold); font-weight:400; }
+
+  .pull{ font-size:clamp(20px,2.6vw,27px); font-weight:300; line-height:1.45; color:var(--white);
+    border-left:2px solid var(--gold); padding:6px 0 6px 26px; margin:34px 0; max-width:32ch; font-style:italic; }
+
+  ul.clean{ list-style:none; max-width:66ch; }
+  ul.clean li{ color:var(--sec); font-size:clamp(14px,1.45vw,16px); padding:10px 0 10px 24px; position:relative;
+    border-bottom:1px solid var(--line); }
+  ul.clean li:last-child{ border-bottom:none; }
+  ul.clean li::before{ content:""; position:absolute; left:2px; top:19px; width:6px; height:6px; background:var(--gold-dim); }
+
+  /* ---- cards ---- */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:26px 0; }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px; }
+  .card:hover{ border-color:var(--line2); }
+  .card .k{ font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); margin-bottom:9px; font-weight:500; }
+  .card p{ font-size:13.5px; line-height:1.55; margin:0; }
+
+  /* ---- tables ---- */
+  .tblwrap{ overflow-x:auto; margin:26px 0; border:1px solid var(--line); border-radius:12px; }
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:520px; }
+  th{ text-align:left; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
+    font-weight:500; padding:12px 16px; border-bottom:1px solid var(--line); background:var(--surface); }
+  td{ padding:11px 16px; color:var(--sec); border-bottom:1px solid var(--line); background:var(--surface); }
+  tr:last-child td{ border-bottom:none; }
+  td.hd{ color:var(--white); font-weight:400; }
+  td.g{ color:var(--gold); font-weight:500; white-space:nowrap; }
+
+  /* ---- measured numbers ---- */
+  .verified{ display:inline-flex; align-items:center; gap:6px; font-size:10px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold-dim); border:1px solid #3a3116; border-radius:99px;
+    padding:3px 10px; margin-left:8px; vertical-align:middle; white-space:nowrap; }
+  .verified::before{ content:"✓"; color:var(--gold); }
+
+  .measure{ background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:24px; margin:16px 0; }
+  .measure .from-to{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin:8px 0 4px; }
+  .measure .from{ font-size:clamp(20px,2.6vw,26px); color:var(--faint); text-decoration:line-through; text-decoration-thickness:1px; }
+  .measure .arrow{ color:var(--faint); }
+  .measure .to{ font-size:clamp(26px,3.6vw,36px); font-weight:500; letter-spacing:-.02em; }
+  .measure .cap{ font-size:12.5px; color:var(--dim); margin-top:6px; max-width:60ch; }
+
+  /* ---- diagram ---- */
+  .diagram{ margin:30px 0; background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:clamp(14px,3vw,28px); overflow-x:auto; }
+  .diagram svg{ display:block; min-width:560px; width:100%; height:auto; }
+
+  /* ---- ramp ---- */
+  .ramp{ display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin:26px 0; }
+  .ramp .step{ background:var(--surface); padding:18px 16px; position:relative; }
+  .ramp .step .s{ font-size:10px; letter-spacing:.18em; color:var(--gold-dim); font-weight:500; }
+  .ramp .step .t{ font-size:14.5px; color:var(--white); font-weight:500; margin:6px 0 5px; }
+  .ramp .step p{ font-size:12px; color:var(--dim); margin:0; line-height:1.5; }
+
+  /* ---- honesty block ---- */
+  .honesty{ border:1px solid #3a3116; border-radius:12px; background:linear-gradient(180deg,#161307,var(--surface)); padding:clamp(22px,4vw,34px); margin:26px 0; }
+  .honesty .k{ font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:14px; }
+  .honesty li{ border-bottom-color:#26220f; }
+
+  /* ---- footer / CTA ---- */
+  footer{ padding:clamp(48px,9vh,90px) 0 clamp(60px,10vh,100px); }
+  footer h2{ margin-bottom:16px; }
+  .contact{ display:flex; gap:26px; flex-wrap:wrap; margin-top:28px; font-size:14px; }
+  .contact a{ color:var(--white); text-decoration:none; border-bottom:1px solid var(--gold-dim); padding-bottom:2px; }
+  .contact a:hover{ border-bottom-color:var(--gold); }
+  .fineprint{ margin-top:44px; font-size:11.5px; color:var(--faint); max-width:70ch; line-height:1.7; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Case study · Flagship build</div>
+    <h1>Auto Pilot <span class="gold">Events OS</span></h1>
+    <p class="lede">An AI operating system for an experiential-events company — an institutional brain
+    that ingests everything the business produces, learns its economics, and runs the deal lifecycle
+    from RFP to production under human supervision. <em>Designed, built, tested and shipped solo in
+    28 days.</em></p>
+    <div class="byline">Ibrahim Naeem — 12+ years UAE event production &amp; operations · built June 15 – July 12, 2026</div>
+
+    <div class="stats">
+      <div class="stat"><div class="n">28<span style="font-size:.55em;color:var(--dim)"> days</span></div><div class="l">Concept → live</div></div>
+      <div class="stat"><div class="n">95</div><div class="l">Registered AI tools</div></div>
+      <div class="stat"><div class="n">7+1</div><div class="l">Agents + director</div></div>
+      <div class="stat"><div class="n gold">753</div><div class="l">Automated tests, green</div></div>
+      <div class="stat"><div class="n">$0<span style="font-size:.55em;color:var(--dim)">/mo</span></div><div class="l">Running-cost floor</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="num">01</div>
+    <h2>The problem — every events company runs on tribal knowledge</h2>
+    <p>I've spent ten years inside large-scale event production in the UAE — GITEX, COP28,
+    Dubai World Cup, government galas. The pattern is the same everywhere: the company's real
+    intelligence lives in a handful of heads and a graveyard of old Excel sheets.</p>
+    <p>An RFP lands. Someone digs through past quotations to remember what a 6-metre stand,
+    an LED wall or a custom counter actually costs. Pricing is inconsistent between estimators.
+    Supplier knowledge is personal, not institutional. When a senior estimator leaves,
+    years of pricing instinct walk out the door with them.</p>
+    <p class="serif pull">Nothing the company learns on one deal makes the next deal any smarter.</p>
+    <p>That is the actual transformation problem — not "add a chatbot." The fix is structural:
+    a system of record that turns every document, every quote and every correction into
+    compounding institutional memory.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">02</div>
+    <h2>The design bet — five principles before a line of code</h2>
+    <p>I wrote a full 360° blueprint before building, anchored on principles chosen to
+    survive to 2040, not to demo well next quarter:</p>
+    <div class="grid">
+      <div class="card"><div class="k">Agent-native, not agent-added</div><p>The default operator is an AI agent; humans supervise through approval gates. The UI is a window into what agents are doing — not a pile of forms.</p></div>
+      <div class="card"><div class="k">Every capability is a tool</div><p>Pricing, 3D-file parsing, BOQ splitting, supplier discovery — each is one typed, documented tool. A human clicks a button; an agent calls the same tool. No human-only capabilities.</p></div>
+      <div class="card"><div class="k">Event-sourced memory</div><p>An append-only log of every business event is simultaneously the audit trail, the agents' working memory, and the ML training data. One design, three payoffs.</p></div>
+      <div class="card"><div class="k">Degrade, never disappear</div><p>If a paid AI engine is unavailable, every feature still runs on a cheaper or local one. Nothing crashes, nothing blocks. This is what makes the $0 mode real.</p></div>
+      <div class="card"><div class="k">ML is earned, not flipped on</div><p>A model ships only when it beats the working heuristic on cross-validated evidence. No model zoo you can't feed — that's theater.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">03</div>
+    <h2>What was built</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 720 330" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#6b6b66"/>
+          </marker>
+        </defs>
+        <!-- front doors -->
+        <rect x="10" y="12" width="700" height="46" rx="9" fill="#1a1a1d" stroke="#26262a"/>
+        <text x="360" y="31" text-anchor="middle" fill="#6b6b66" font-size="9" letter-spacing="2.5">FRONT DOORS</text>
+        <text x="360" y="47" text-anchor="middle" fill="#b9b9b4" font-size="11.5">document drop zone · RFPs · SketchUp / 3D files · renders · pricing sheets · chat</text>
+        <line x1="360" y1="58" x2="360" y2="82" stroke="#6b6b66" stroke-width="1" marker-end="url(#ar)"/>
+        <!-- api brain -->
+        <rect x="150" y="84" width="420" height="46" rx="9" fill="#141416" stroke="#3a3116"/>
+        <text x="360" y="103" text-anchor="middle" fill="#d9b45b" font-size="9" letter-spacing="2.5">THE BRAIN</text>
+        <text x="360" y="119" text-anchor="middle" fill="#f4f4f2" font-size="11.5">Typed API · auth &amp; role-based access · 95-tool registry</text>
+        <line x1="360" y1="130" x2="360" y2="154" stroke="#6b6b66" stroke-width="1" marker-end="url(#ar)"/>
+        <!-- event log -->
+        <rect x="150" y="156" width="420" height="46" rx="9" fill="#141416" stroke="#3a3116"/>
+        <text x="360" y="175" text-anchor="middle" fill="#d9b45b" font-size="9" letter-spacing="2.5">THE SPINE</text>
+        <text x="360" y="191" text-anchor="middle" fill="#f4f4f2" font-size="11.5">Append-only event log — audit trail · agent memory · training data</text>
+        <!-- three children -->
+        <line x1="220" y1="202" x2="130" y2="232" stroke="#6b6b66" stroke-width="1" marker-end="url(#ar)"/>
+        <line x1="360" y1="202" x2="360" y2="232" stroke="#6b6b66" stroke-width="1" marker-end="url(#ar)"/>
+        <line x1="500" y1="202" x2="590" y2="232" stroke="#6b6b66" stroke-width="1" marker-end="url(#ar)"/>
+        <rect x="10" y="234" width="220" height="60" rx="9" fill="#1a1a1d" stroke="#26262a"/>
+        <text x="120" y="257" text-anchor="middle" fill="#f4f4f2" font-size="11.5">Agent runtime</text>
+        <text x="120" y="274" text-anchor="middle" fill="#8f8f8a" font-size="10.5">7 specialists + a director, 24/7</text>
+        <rect x="250" y="234" width="220" height="60" rx="9" fill="#1a1a1d" stroke="#26262a"/>
+        <text x="360" y="257" text-anchor="middle" fill="#f4f4f2" font-size="11.5">Learning loop</text>
+        <text x="360" y="274" text-anchor="middle" fill="#8f8f8a" font-size="10.5">every correction → training signal</text>
+        <rect x="490" y="234" width="220" height="60" rx="9" fill="#1a1a1d" stroke="#26262a"/>
+        <text x="600" y="257" text-anchor="middle" fill="#f4f4f2" font-size="11.5">Control room</text>
+        <text x="600" y="274" text-anchor="middle" fill="#8f8f8a" font-size="10.5">23-page web app + chat assistant</text>
+        <text x="360" y="320" text-anchor="middle" fill="#6b6b66" font-size="10">Model gateway routes every AI call: free local models ↔ free cloud ↔ paid frontier — swappable, never load-bearing</text>
+      </svg>
+    </div>
+    <ul class="clean">
+      <li><b>The deal lifecycle, end to end</b> — RFP intake and analysis, 3D design-file parsing, pricing suggestions with confidence tiers, commercial drafting in the house style, supplier RFQ splitting and quote comparison, production planning, scheduling and resource booking.</li>
+      <li><b>95 registered tools</b> behind one interface — every capability callable identically by a human clicking a button or an agent doing its job.</li>
+      <li><b>7 specialist agents plus a director</b> — intake clerk, pricing analyst, sourcing scout, commercial drafter, render reader, QA verifier, data scientist — working the event log around the clock, plus a natural-language assistant for the whole system.</li>
+      <li><b>A 23-page operations web app</b> — dashboard, deals, pricing, sourcing, commercial, finance, analytics, approvals — audited down to 375-pixel phone screens.</li>
+      <li><b>Institutional memory that compounds</b> — 1,136 price points learned from the company's real historical documents at ship date, growing with every deal ingested.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">04</div>
+    <h2>The pricing brain — measured, not promised</h2>
+    <p>The heart of the system learns what things cost from the company's own history.
+    All results below were measured on <b>real historical pricing data</b>, cross-validated,
+    and verified live against the running system — not projected.</p>
+
+    <div class="measure">
+      <div class="eyebrow">Pricing error — median absolute error, baseline model</div>
+      <div class="from-to"><span class="from">41,432</span><span class="arrow">→</span><span class="to gold">13,927</span><span class="verified">live-verified</span></div>
+      <div class="cap">A ⅔ reduction in pricing error, achieved by teaching the system to tell real line items from lump-sum
+      totals and allowance buckets: 57% of the raw training frame turned out to be noise, detected and excluded
+      by deterministic rules — no guesswork.</div>
+    </div>
+
+    <div class="measure">
+      <div class="eyebrow">Learned model vs. working heuristic — cross-validated</div>
+      <div class="from-to"><span class="to">+7.6% / +8.1%</span><span class="verified">live-verified</span></div>
+      <div class="cap">The gradient-boosted pricing model was only allowed to take over after clearing three
+      statistical bars on cross-validation: beat the median baseline by ≥5%, beat the simpler regression by ≥5%
+      (it cleared +14.9% and +15.8%), and produce a full explanation of its own pricing logic.</div>
+    </div>
+
+    <div class="measure">
+      <div class="eyebrow">The model's learned pricing logic — explainable</div>
+      <div class="from-to"><span class="to">base ≈ AED 3,629 / m²</span></div>
+      <div class="cap">The model's learned cost adders read like an estimator's own mental model: height +3,052 ·
+      acrylic +1,752 · wood +1,008 · fabric +828 · MDF +797. When a model can explain itself in the language
+      of the trade, operators trust it — and correct it, which trains it further.</div>
+    </div>
+
+    <p style="margin-top:26px"><span class="au">The part most AI projects skip:</span> the first trained model looked
+    31% better than the regression — but only 1% better than a simple median. The system's promotion gate
+    rejected it as theater. It also <b>demotes</b> a previously live model whose retrain no longer clears the bar,
+    and when asked to break down a cost section it has too little history for, it <b>refuses and says so</b>
+    rather than inventing a split. Honesty is enforced by machinery, not by intention.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">05</div>
+    <h2>Governance — autonomy is earned one capability at a time</h2>
+    <p>Directors don't get asked "can you build AI?" They get asked "can you control it?"
+    Every agent action passes through safety tiers, and each capability climbs this ramp
+    only as evidence accumulates:</p>
+    <div class="ramp">
+      <div class="step"><div class="s">STAGE 1</div><div class="t">Assistant</div><p>Drafts only. A human executes everything.</p></div>
+      <div class="step"><div class="s">STAGE 2</div><div class="t">Co-pilot</div><p>Acts, but a human approves each action.</p></div>
+      <div class="step"><div class="s">STAGE 3</div><div class="t">Supervised autopilot</div><p>Self-approves low-risk actions within rules; asks on high-risk.</p></div>
+      <div class="step"><div class="s">STAGE 4</div><div class="t">Autopilot</div><p>Runs routine deals end-to-end; escalates exceptions only.</p></div>
+    </div>
+    <ul class="clean">
+      <li><b>Hard-blocked tier</b> — sending money, sending external messages, deleting data: blocked until a human explicitly lifts them, regardless of how capable the agents become.</li>
+      <li><b>Full journal</b> — every agent step is recorded on the append-only spine. The audit trail isn't a feature; it's the architecture.</li>
+      <li><b>Evaluation harness</b> — a "smarter" prompt or model that breaks pricing fails the test suite before it ships. Stronger must be measured, not claimed.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">06</div>
+    <h2>Cost engineering — four modes, zero breakage</h2>
+    <p>One environment variable moves the entire system between four cost postures — same containers,
+    same database schema, same features everywhere. Capabilities degrade gracefully; nothing disappears.
+    An events company can start at literally zero and pay only when volume justifies it.</p>
+    <div class="tblwrap"><table>
+      <tr><th>Mode</th><th>Runs on</th><th>AI engines</th><th>Cost / month</th></tr>
+      <tr><td class="hd">Local free</td><td>One laptop + Docker</td><td>Free cloud + local models</td><td class="g">$0</td></tr>
+      <tr><td class="hd">Cloud free</td><td>Free-tier cloud server</td><td>Free cloud models</td><td class="g">~$1</td></tr>
+      <tr><td class="hd">Boosted</td><td>Same server</td><td>+ paid frontier models</td><td class="g">~$15–40</td></tr>
+      <tr><td class="hd">All-in</td><td>Scaled cloud</td><td>+ paid frontier models</td><td class="g">~$100–300</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">07</div>
+    <h2>How one person shipped this in 28 days</h2>
+    <p>I built this the way I'd run an AI-transformed company: <b>as the director of a fleet of AI
+    coding agents</b>, not as a lone typist. Frontier models drew the architecture and reviewed the hard
+    decisions; workhorse models implemented scoped, pre-specified batches; every batch shipped with tests
+    and was verified live against the real system before the next began.</p>
+    <ul class="clean">
+      <li><b>~39,000 lines of working code</b> — a 25k-line Python backend across 222 files and a 14k-line TypeScript frontend — plus 8,800 lines of tests.</li>
+      <li><b>753 automated tests, all green</b> — grown batch-by-batch, never bolted on after (re-run and verified the day this case study was written). The suite is what lets AI agents build safely at this speed.</li>
+      <li><b>Live verification as a discipline</b> — measured claims (the pricing numbers above) come from runs against the real deployed system, and the build log records the failures too, including the model the promotion gate rejected.</li>
+      <li><b>Scope discipline</b> — a deferred-work ledger tracks every consciously parked feature with the condition that revives it. The build queue was closed by decision, not exhaustion: the system now improves by being used.</li>
+    </ul>
+    <p>That workflow — blueprint first, typed tool seams, statistical promotion gates, human approval
+    tiers, test-gated AI batches — is the same operating discipline I bring to transforming a business.
+    The codebase is the proof it works.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">08</div>
+    <h2>What I will <span class="gold">not</span> claim</h2>
+    <div class="honesty">
+      <div class="k">Read this before you believe the rest</div>
+      <ul class="clean">
+        <li><b>No revenue-ROI figures yet.</b> The system entered production use on July 12, 2026. Client-facing ROI numbers (hours saved per quote, win-rate movement) will be published once real usage produces them — measured, like everything above.</li>
+        <li><b>The accuracy numbers are technical, not commercial.</b> They are cross-validated error reductions on real historical data — strong evidence the learning works, not a promise about your P&amp;L.</li>
+        <li><b>Some capabilities are deliberately dormant.</b> Deal-outcome prediction, for example, activates itself only after ~100 closed deals of data exist. It would be theater to switch it on sooner — so it's off.</li>
+      </ul>
+      <p style="margin:16px 0 0; font-size:13px; color:var(--dim)">If a consultant shows you an AI case study with no section like this one, ask why.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="eyebrow">The offer</div>
+    <h2>Your events company already owns its moat.<br>It's sitting in old spreadsheets.</h2>
+    <p style="color:var(--sec); max-width:62ch; font-size:15.5px">Every quotation your team has ever produced is
+    training data for a pricing brain like this one. I build these systems for events and experiential
+    agencies — starting from your real documents, on infrastructure you own, at a running cost that can
+    start at zero. And I speak both languages: ten years on the production floor, and the engineering
+    to ship what most consultants only slide-deck.</p>
+    <div class="contact">
+      <a href="mailto:ibrahim_naeem@outlook.com">ibrahim_naeem@outlook.com</a>
+      <a href="https://linkedin.com/in/ibrahimn">linkedin.com/in/ibrahimn</a>
+      <span style="color:var(--dim)">Dubai · UAE</span>
+    </div>
+    <p class="fineprint">All figures in this case study are drawn from the system's build log and live-verification
+    records, June 15 – July 12, 2026. Pricing-model metrics are k-fold cross-validated on the company's historical
+    pricing corpus (1,136 price points at ship date) and were re-verified against the deployed system. Client and
+    company data shown nowhere in this document. Test count reflects the full automated suite at the time of writing.</p>
+  </div>
+</footer>
+
+</body>
+</html>
