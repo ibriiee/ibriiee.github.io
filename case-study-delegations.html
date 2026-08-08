@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Government Delegations at Scale · Ibrahim Naeem</title>
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ibriiee.github.io/case-study-delegations.html">
+<meta property="og:title" content="Government Delegations at Scale — Case Study">
+<meta property="og:description" content="Two years nine months running VIP government delegation programmes for Dubai World Trade Centre. 140+ countries, six consecutive editions, three continents.">
+<meta property="og:image" content="https://ibriiee.github.io/assets/og-delegations.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ibriiee.github.io/assets/og-delegations.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --jet:#0c0c0d; --surface:#141416; --surface2:#1a1a1d;
+    --line:#26262a; --line2:#333;
+    --white:#f4f4f2; --sec:#b9b9b4; --dim:#8f8f8a; --faint:#6b6b66;
+    --gold:#d9b45b; --gold-dim:#9a7b2d;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--jet); color:var(--white);
+    font-family:'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-weight:300; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .serif{ font-family:'Newsreader', Georgia, 'Times New Roman', serif; }
+
+  .wrap{ max-width:860px; margin:0 auto; padding:0 clamp(20px,5vw,48px); }
+
+  .eyebrow{ font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--faint); font-weight:500; }
+  .gold{ background:linear-gradient(100deg,#9a7b2d 0%,#d9b45b 35%,#f3e2a3 50%,#d9b45b 65%,#9a7b2d 100%);
+    background-size:200% 100%; -webkit-background-clip:text; background-clip:text;
+    color:transparent; -webkit-text-fill-color:transparent; animation:shine 6s linear infinite; font-weight:500; }
+  @keyframes shine{ 0%{ background-position:200% 0 } 100%{ background-position:-200% 0 } }
+
+  /* ---- hero ---- */
+  header{ padding:clamp(64px,12vh,120px) 0 clamp(40px,7vh,72px); border-bottom:1px solid var(--line); }
+  header h1{ font-size:clamp(34px,5.4vw,58px); font-weight:500; letter-spacing:-.025em; line-height:1.08; margin:18px 0 22px; }
+  header .lede{ font-size:clamp(16px,1.9vw,20px); color:var(--sec); max-width:58ch; line-height:1.6; }
+  header .lede em{ color:var(--white); font-style:normal; }
+  .byline{ margin-top:26px; font-size:13px; color:var(--dim); letter-spacing:.04em; }
+  .byline b{ color:var(--white); font-weight:500; }
+
+  /* ---- stat band ---- */
+  .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin:clamp(36px,6vh,56px) 0; }
+  .stat{ background:var(--surface); padding:20px 18px; }
+  .stat .n{ font-size:clamp(22px,3vw,30px); font-weight:500; letter-spacing:-.02em; }
+  .stat .l{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-top:6px; }
+
+  /* ---- sections ---- */
+  section{ padding:clamp(44px,8vh,80px) 0; border-bottom:1px solid var(--line); }
+  .num{ font-size:12px; letter-spacing:.24em; color:var(--gold); font-weight:500; }
+  h2{ font-size:clamp(24px,3.4vw,34px); font-weight:500; letter-spacing:-.02em; margin:12px 0 24px; line-height:1.2; }
+  section p{ color:var(--sec); font-size:clamp(14.5px,1.5vw,16.5px); max-width:66ch; margin-bottom:18px; }
+  section p b, section li b{ color:var(--white); font-weight:500; }
+  section p .au{ color:var(--gold); font-weight:400; }
+
+  .pull{ font-size:clamp(20px,2.6vw,27px); font-weight:300; line-height:1.45; color:var(--white);
+    border-left:2px solid var(--gold); padding:6px 0 6px 26px; margin:34px 0; max-width:32ch; font-style:italic; }
+
+  ul.clean{ list-style:none; max-width:66ch; }
+  ul.clean li{ color:var(--sec); font-size:clamp(14px,1.45vw,16px); padding:10px 0 10px 24px; position:relative;
+    border-bottom:1px solid var(--line); }
+  ul.clean li:last-child{ border-bottom:none; }
+  ul.clean li::before{ content:""; position:absolute; left:2px; top:19px; width:6px; height:6px; background:var(--gold-dim); }
+
+  /* ---- cards ---- */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:26px 0; }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px; }
+  .card:hover{ border-color:var(--line2); }
+  .card .k{ font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); margin-bottom:9px; font-weight:500; }
+  .card p{ font-size:13.5px; line-height:1.55; margin:0; }
+
+  /* ---- tables ---- */
+  .tblwrap{ overflow-x:auto; margin:26px 0; border:1px solid var(--line); border-radius:12px; }
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:520px; }
+  th{ text-align:left; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
+    font-weight:500; padding:12px 16px; border-bottom:1px solid var(--line); background:var(--surface); }
+  td{ padding:11px 16px; color:var(--sec); border-bottom:1px solid var(--line); background:var(--surface); }
+  tr:last-child td{ border-bottom:none; }
+  td.hd{ color:var(--white); font-weight:400; }
+  td.g{ color:var(--gold); font-weight:500; white-space:nowrap; }
+
+  /* ---- measured numbers ---- */
+  .verified{ display:inline-flex; align-items:center; gap:6px; font-size:10px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold-dim); border:1px solid #3a3116; border-radius:99px;
+    padding:3px 10px; margin-left:8px; vertical-align:middle; white-space:nowrap; }
+  .verified::before{ content:"✓"; color:var(--gold); }
+
+  .measure{ background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:24px; margin:16px 0; }
+  .measure .from-to{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin:8px 0 4px; }
+  .measure .from{ font-size:clamp(20px,2.6vw,26px); color:var(--faint); text-decoration:line-through; text-decoration-thickness:1px; }
+  .measure .arrow{ color:var(--faint); }
+  .measure .to{ font-size:clamp(26px,3.6vw,36px); font-weight:500; letter-spacing:-.02em; }
+  .measure .cap{ font-size:12.5px; color:var(--dim); margin-top:6px; max-width:60ch; }
+
+  /* ---- diagram ---- */
+  .diagram{ margin:30px 0; background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:clamp(14px,3vw,28px); overflow-x:auto; }
+  .diagram svg{ display:block; min-width:560px; width:100%; height:auto; }
+
+  /* ---- ramp ---- */
+  .ramp{ display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin:26px 0; }
+  .ramp .step{ background:var(--surface); padding:18px 16px; position:relative; }
+  .ramp .step .s{ font-size:10px; letter-spacing:.18em; color:var(--gold-dim); font-weight:500; }
+  .ramp .step .t{ font-size:14.5px; color:var(--white); font-weight:500; margin:6px 0 5px; }
+  .ramp .step p{ font-size:12px; color:var(--dim); margin:0; line-height:1.5; }
+
+  /* ---- honesty block ---- */
+  .honesty{ border:1px solid #3a3116; border-radius:12px; background:linear-gradient(180deg,#161307,var(--surface)); padding:clamp(22px,4vw,34px); margin:26px 0; }
+  .honesty .k{ font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:14px; }
+  .honesty li{ border-bottom-color:#26220f; }
+
+  /* ---- footer / CTA ---- */
+  footer{ padding:clamp(48px,9vh,90px) 0 clamp(60px,10vh,100px); }
+  footer h2{ margin-bottom:16px; }
+  .contact{ display:flex; gap:26px; flex-wrap:wrap; margin-top:28px; font-size:14px; }
+  .contact a{ color:var(--white); text-decoration:none; border-bottom:1px solid var(--gold-dim); padding-bottom:2px; }
+  .contact a:hover{ border-bottom-color:var(--gold); }
+  .fineprint{ margin-top:44px; font-size:11.5px; color:var(--faint); max-width:70ch; line-height:1.7; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Case study &middot; Government &amp; protocol</div>
+    <h1 class="serif">Protocol at scale:<br><span class="gold">140+ countries</span>, six editions,
+      three continents.</h1>
+    <p class="lede">Two years and nine months running VIP government delegation programmes for
+      Dubai World Trade Centre. Ministers, ambassadors and investors, each arriving with a
+      different definition of what respectful looks like, all inside the same week, on the same
+      show floor. <em>This is how you make that repeatable instead of heroic.</em></p>
+    <div class="byline"><b>Ibrahim Naeem</b> &mdash; Government Key Account Manager &amp;
+      Executive Meeting Manager, DWTC (via Vibes Events) &middot; April 2023 &ndash; December 2025</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">2y 9m</div><div class="l">Continuous engagement</div></div>
+    <div class="stat"><div class="n gold">140+</div><div class="l">Countries represented</div></div>
+    <div class="stat"><div class="n">6</div><div class="l">Consecutive editions</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Continents</div></div>
+  </div>
+</div>
+
+<section><div class="wrap">
+  <div class="num">01</div>
+  <h2 class="serif">The problem &mdash; protocol does not scale by trying harder</h2>
+  <p>A delegation programme looks like logistics from the outside. It is not. It is a
+    <b>communications problem wearing a logistics costume</b>: a minister, an ambassador and a
+    sovereign-fund investor each arrive with their own unwritten expectations about how a meeting
+    opens, who is introduced first, where they sit, and what counts as respect.</p>
+  <p>At the scale DWTC operates, those expectations arrive in parallel. Delegations from more than
+    140 countries, in one venue, in one week, with schedules that change while people are already
+    in the air.</p>
+  <p class="serif pull">The failure mode at this scale is never one big mistake. It is a hundred
+    small discourtesies nobody reports.</p>
+  <p>Nobody files a complaint about being introduced second. They simply do not come back, and
+    the reason never reaches the people who could have fixed it. So the thing that has to be
+    engineered is not the schedule. It is the <b>consistency of small courtesies</b> across
+    dozens of simultaneous programmes run by people who cannot all be you.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="num">02</div>
+  <h2 class="serif">The operating rules</h2>
+  <p>Four rules did the heavy lifting. None of them are taught on a course, and all four exist
+    because something nearly went wrong first.</p>
+  <ul class="clean">
+    <li><b>Confirm names and titles twice.</b> A wrong title costs more than a late car. A car can
+      be apologised for; a demoted minister cannot.</li>
+    <li><b>The schedule is a living document.</b> Build slack into it, or it builds slack into you.
+      A programme with no give does not survive its first changed flight.</li>
+    <li><b>The delegate's assistant is the most important person you will speak to all week.</b>
+      They control access, they know the real preferences, and they remember how they were treated.</li>
+    <li><b>When two protocols conflict, seniority wins, and apologies travel down, never up.</b>
+      Decide the hierarchy before the room fills, not in it.</li>
+  </ul>
+  <p>Written down, they look obvious. The value is not the insight, it is that they are
+    <b>transferable</b>. A rule that fits on one line can be handed to a coordinator who has never
+    met a deputy minister, and it will hold.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="num">03</div>
+  <h2 class="serif">What the programme actually involved</h2>
+  <div class="grid">
+    <div class="card"><div class="k">Visit programme design</div>
+      <p>Complete end-to-end programmes per delegation: arrival, schedule, meeting sequence,
+        floor movement, departure.</p></div>
+    <div class="card"><div class="k">Executive briefing material</div>
+      <p>Briefing packs and ministerial-level correspondence prepared ahead of every high-level
+        meeting.</p></div>
+    <div class="card"><div class="k">Approval chains</div>
+      <p>Every programme cleared between DWTC leadership, government protocol offices and the
+        delegation's own office before anything was committed.</p></div>
+    <div class="card"><div class="k">Strategic B2B matchmaking</div>
+      <p>Pairing delegations with the right exhibitors and executives, under full diplomatic
+        protocol.</p></div>
+    <div class="card"><div class="k">Elite Buyers Program</div>
+      <p>Headed the buyer programme for Gulfood 2025, the world's largest annual F&amp;B event:
+        sourcing, onboarding and executive matchmaking for top-tier international buyers.</p></div>
+    <div class="card"><div class="k">Live floor execution</div>
+      <p>Running the programme in real time as flights, ministers and priorities moved.</p></div>
+  </div>
+  <p>The six editions: <b>GITEX Global 2023, 2024 and 2025 &middot; GITEX Africa &middot;
+    GITEX Europe 2025 &middot; Gulfood Manufacturing 2025.</b></p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="num">04</div>
+  <h2 class="serif">The measure &mdash; retention, stated plainly</h2>
+  <p>Delegation programmes do not produce a tidy conversion metric that belongs to the person
+    running them. Meeting counts sit in DWTC's systems, and trade outcomes belong to the parties
+    who signed them. So rather than borrow a number that is not mine, here is the one that is:</p>
+  <div class="measure">
+    <div class="k eyebrow">Engagement continuity</div>
+    <div class="from-to">
+      <span class="to gold">Six consecutive editions</span>
+      <span class="verified">record-verified</span>
+    </div>
+    <div class="cap">April 2023 to December 2025, unbroken, across three continents. In an industry
+      that staffs delegation programmes edition by edition, being re-engaged six times in a row is
+      the outcome metric. Nobody re-books a protocol failure.</div>
+  </div>
+  <p>That is the honest measure of this work, and it is worth more than an estimated figure would
+    be. A hiring manager can verify it in one reference call.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="num">05</div>
+  <h2 class="serif">Governance &mdash; the approval chain is the job, not the obstacle</h2>
+  <p>Every programme moved through four layers before it existed: <b>DWTC leadership, government
+    protocol offices, the embassy or ministry contact, and the delegation's own office.</b> Nothing
+    went out uncleared, and no layer could be skipped for speed.</p>
+  <p>Most people treat that chain as friction. It is not. At government level the approval chain
+    <b>is the product</b>: it is what makes a commitment trustworthy on both sides. The skill is
+    running it fast without cutting it, which means knowing what each layer actually needs to say
+    yes, and giving them exactly that, early.</p>
+  <p class="serif pull">Speed at government level comes from knowing what each approver needs, not
+    from skipping approvers.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="num">06</div>
+  <h2 class="serif">Where this connects to the AI work</h2>
+  <p>The delegation programme is where I learned the problem that
+    <a href="case-study.html" style="color:inherit;border-bottom:1px solid var(--gold-dim);">Auto
+    Pilot Events OS</a> was eventually built to solve. Protocol knowledge, supplier knowledge and
+    pricing instinct all behave the same way in this industry: they live in individuals, they are
+    never written down, and they walk out of the building when a person moves on.</p>
+  <p>Four rules on a page was the manual version of institutional memory. The software version came
+    later, and it is the same idea with better machinery.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="num">07</div>
+  <h2 class="serif">What I will not claim</h2>
+  <div class="honesty">
+    <div class="k">Stated up front, so nobody has to ask</div>
+    <ul class="clean">
+      <li><b>No meeting or delegation counts.</b> Those numbers live in DWTC's systems. They are
+        not mine to publish and I will not estimate them.</li>
+      <li><b>No attributed trade or deal value.</b> Delegations sign their own agreements. Claiming
+        credit for the value that flows through an event you helped run is the oldest inflation in
+        this industry.</li>
+      <li><b>The relationships were DWTC's.</b> My contribution was the programme design, the
+        protocol discipline and the execution, not the invitation list.</li>
+      <li><b>No client or delegate names.</b> Beyond the public event brands, everything here stays
+        anonymous, permanently.</li>
+      <li><b>Contracted, not employed.</b> The engagement ran through Vibes Events. Stated because
+        the distinction matters and hiding it would be the point at which this document stopped
+        being worth reading.</li>
+    </ul>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="eyebrow">What I do with this now</div>
+  <h2 class="serif">Government-grade delivery, plus the systems to make it repeatable.</h2>
+  <p>Twelve years of UAE and GCC event operations, and the AI systems built to run them. I work with
+    events companies, agencies and government-adjacent organisations on the operations and the
+    transformation, employed or fractional.</p>
+  <div class="contact">
+    <a href="https://linkedin.com/in/ibrahimn">linkedin.com/in/ibrahimn</a>
+    <a href="mailto:ibrahim_naeem@outlook.com">ibrahim_naeem@outlook.com</a>
+    <a href="case-study.html">Auto Pilot Events OS case study</a>
+    <a href="profile.html">Full profile</a>
+  </div>
+  <p class="fineprint">Every figure on this page is drawn from record: engagement dates, the six
+    editions and the 140+ country figure are verifiable through Dubai World Trade Centre and Vibes
+    Events. Nothing on this page is estimated, extrapolated or rounded up. Where a number would
+    have strengthened the case but does not belong to me, section 07 says so instead.</p>
+</div></footer>
+
+</body>
+</html>
