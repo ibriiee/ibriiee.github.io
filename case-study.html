@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Case Study: Auto Pilot Events OS · Ibrahim Naeem</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0d0d'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23c9a227' text-anchor='middle'%3EIN%3C/text%3E%3C/svg%3E">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ibriiee.github.io/case-study.html">
   <meta property="og:title" content="Auto Pilot Events OS: Case Study">
@@ -242,8 +243,8 @@
     and verified live against the running system, not projected.</p>
 
     <div class="measure">
-      <div class="eyebrow">Pricing error, median absolute error, baseline model</div>
-      <div class="from-to"><span class="from">41,432</span><span class="arrow">→</span><span class="to gold">13,927</span><span class="verified">live-verified</span></div>
+      <div class="eyebrow">Pricing error, median absolute error</div>
+      <div class="from-to"><span class="from">Baseline model</span><span class="arrow">→</span><span class="to gold">66% lower</span><span class="verified">live-verified</span></div>
       <div class="cap">A ⅔ reduction in pricing error, achieved by teaching the system to tell real line items from lump-sum
       totals and allowance buckets: 57% of the raw training frame turned out to be noise, detected and excluded
       by deterministic rules, with no guesswork.</div>
@@ -259,10 +260,8 @@
 
     <div class="measure">
       <div class="eyebrow">The model's learned pricing logic, explainable</div>
-      <div class="from-to"><span class="to">base ≈ AED 3,629 / m²</span></div>
-      <div class="cap">The model's learned cost adders read like an estimator's own mental model: height +3,052 ·
-      acrylic +1,752 · wood +1,008 · fabric +828 · MDF +797. When a model can explain itself in the language
-      of the trade, operators trust it, and correct it, which trains it further.</div>
+      <div class="from-to"><span class="to">learned, and explainable</span></div>
+      <div class="cap">The model does not just output a number, it outputs the reasoning: which materials, which heights and which build characteristics pushed the price, ranked by how much each one contributed. Those learned adders read like an estimator's own mental model. When a model can explain itself in the language of the trade, operators trust it, and correct it, which trains it further. The adders themselves are the client's commercial pricing structure and are not published here.</div>
     </div>
 
     <p style="margin-top:26px"><span class="au">The part most AI projects skip:</span> the first trained model looked
@@ -338,6 +337,7 @@
     <div class="honesty">
       <div class="k">Read this before you believe the rest</div>
       <ul class="clean">
+        <li><b>It is not finished learning, and that is the design.</b> The hard work is done: the corpus is built, the pipeline runs, the promotion gate works. Accuracy now improves with volume, so the more history a company feeds it, the sharper it gets. Any vendor telling you their pricing model is finished on day one is selling you something.</li>
         <li><b>No revenue-ROI figures yet.</b> The system entered production use on July 12, 2026. Client-facing ROI numbers (hours saved per quote, win-rate movement) will be published once real usage produces them, measured like everything above.</li>
         <li><b>The accuracy numbers are technical, not commercial.</b> They are cross-validated error reductions on real historical data. Strong evidence the learning works, not a promise about your P&amp;L.</li>
         <li><b>Some capabilities are deliberately dormant.</b> Deal-outcome prediction, for example, activates itself only after ~100 closed deals of data exist. It would be theater to switch it on sooner, so it's off.</li>
@@ -359,12 +359,16 @@
     <div class="contact">
       <a href="mailto:ibrahim_naeem@outlook.com">ibrahim_naeem@outlook.com</a>
       <a href="https://linkedin.com/in/ibrahimn">linkedin.com/in/ibrahimn</a>
+      <a href="case-study-delegations.html">Government delegations case study</a>
+      <a href="case-study-alain.html">Al Ain Flower Festival case study</a>
+      <a href="profile.html">Full profile</a>
+      <a href="https://www.kaggle.com/ibriiee">Kaggle: data science portfolio</a>
       <span style="color:var(--dim)">Dubai · UAE</span>
     </div>
     <p class="fineprint">All figures in this case study are drawn from the system's build log and live-verification
-    records, June 15 – July 12, 2026. Pricing-model metrics are k-fold cross-validated on the company's historical
-    pricing corpus (1,136 price points at ship date) and were re-verified against the deployed system. Client and
-    company data shown nowhere in this document. Test count reflects the full automated suite at the time of writing.</p>
+    records, June 15 – July 12, 2026. Pricing-model metrics are k-fold cross-validated on a real historical
+    pricing corpus and were re-verified against the deployed system. The client is not named and no client pricing,
+    document or commercial data appears anywhere in this case study, by agreement. Test count reflects the full automated suite at the time of writing.</p>
   </div>
 </footer>
 
